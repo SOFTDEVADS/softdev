@@ -1,295 +1,594 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoftDev - Desenvolvimento de Software</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-    }
+  <title>BR Concursos</title>
+  <!-- Add Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Adicionar Favicon -->
+ 
+<link rel="icon" type="image/png" href="c:\Users\MIDIAN\Downloads\Design_sem_nome__2_-removebg-preview (1).png">
 
-    h1, h2 {
-      color: #00BFFF;
-    }
-
-    footer {
-      background-color: #222;
-      color: #aaa;
-      padding: 10px;
-    }
-
-    .navbar {
-      background-color: #000;
-      margin-bottom: 20px;
-    }
-
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar-brand img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 10px;
-    }
-
-    .navbar-brand span {
-      font-size: 24px;
-      color: #00BFFF;
-    }
-
-    .nav-link {
-      color: #fff !important;
-    }
-
-    .nav-link:hover {
-      color: #00BFFF !important;
-    }
-
-    .container {
-      max-width: 800px;
-    }
-
-    .btn-primary {
-      background-color: #00BFFF;
-      border-color: #00BFFF;
-    }
-
-    .btn-primary:hover {
-      background-color: #009ACD;
-      border-color: #009ACD;
-    }
-
-    .form-control {
-      background-color: #333;
-      color: #fff;
-      border: 1px solid #00BFFF;
-    }
-
-    .form-control:focus {
-      border-color: #00BFFF;
-      box-shadow: 0 0 5px rgba(0, 191, 255, 0.8);
-    }
-
-    .alert {
-      background-color: #222;
-      color: #00BFFF;
-    }
-
-    #mapa {
-      height: 400px;
-      margin-top: 20px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin-top: 50px;
-    }
-
-    .modal-content {
-      background-color: #f8f9fa;
-    }
-
-    .modal-header {
-      background-color: #343a40;
-      color: white;
-    }
-
-    .btn-close {
-      color: white;
-    }
-
-    .buttonStyle {
-      background-color: #00BFFF;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .buttonStyle:hover {
-      background-color: #009ACD;
-    }
-  </style>
 </head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background-color: #003366;
+    color: #fff;
+    padding: 15px 20px;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .nav {
+    display: flex;
+    gap: 15px;
+  }
+
+  .nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+
+  .nav a:hover {
+    color: #FFD700;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 10px;
+    position: relative;
+  }
+
+  .cta-buttons a, .cta-buttons button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cta-buttons .btn-primary {
+    background-color: #FFA500;
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background-color: #ff8c00;
+  }
+
+  .cta-buttons .btn-secondary {
+    background-color: transparent;
+    border: 2px solid #fff;
+  }
+
+  .cta-buttons .btn-secondary:hover {
+    background-color: #fff;
+    color: #003366;
+  }
+
+  .hero {
+    background: linear-gradient(to right, #003366, #00509e);
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .hero .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #FFA500;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .hero .btn:hover {
+    background-color: #ff8c00;
+  }
+
+  .menu-container {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    display: none;
+    z-index: 1000;
+  }
+
+  .menu-container h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .menu-list {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .menu-list li {
+    margin-bottom: 10px;
+  }
+
+  .menu-list a {
+    text-decoration: none;
+    color: #00509e;
+    font-size: 16px;
+  }
+
+  .menu-list a:hover {
+    text-decoration: underline;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-aluno, .btn-entrar {
+    padding: 8px 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .btn-aluno {
+    background-color: #FF4500;
+  }
+
+  .btn-aluno:hover {
+    background-color: #cc3700;
+  }
+
+  .btn-entrar {
+    background-color: #00509e;
+  }
+
+  .btn-entrar:hover {
+    background-color: #003366;
+  }
+
+  .courses {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .courses h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .course-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .course-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .course-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .course-card-content {
+    padding: 20px;
+  }
+
+  .course-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .course-card p {
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  .course-card .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #00509e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .course-card .btn:hover {
+    background-color: #003366;
+  }
+
+  .news-section, .tech-section {
+    padding: 60px 20px;
+    background-color: #f5f5f5;
+  }
+
+  .tech-section {
+    background-color: #fff;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .section-title h2 {
+    font-size: 32px;
+    color: #003366;
+    margin-bottom: 15px;
+  }
+
+  .section-title p {
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .news-grid, .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .news-card, .tech-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .tech-card {
+    background: #f8f9fa;
+  }
+
+  .news-card:hover, .tech-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .news-card img, .tech-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .card-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #003366;
+  }
+
+  .card-content p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #888;
+    font-size: 14px;
+  }
+
+  .read-more {
+    color: #00509e;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .read-more:hover {
+    color: #003366;
+  }
+
+  footer {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      display: none;
+    }
+    
+    .course-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .news-grid, .tech-grid {
+      grid-template-columns: 1fr;
+      padding: 0 20px;
+    }
+  }
+
+  /* Add icon styles */
+  .icon {
+    margin-right: 8px;
+    color: inherit;
+  }
+
+  .section-title .icon {
+    font-size: 36px;
+    color: #003366;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .card-meta .icon {
+    margin-right: 5px;
+    color: #888;
+  }
+
+  .logo .icon {
+    color: #FFD700;
+    margin-right: 10px;
+  }
+
+  .nav a .icon {
+    margin-right: 5px;
+  }
+</style>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="c:\Users\MIDIAN\Downloads\soft-dev (1).png" alt="SoftDev Logo"> <!-- Caminho alterado -->
-        <span>SoftDev</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#home">Página Inicial</a></li>
-          <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
-          <li class="nav-item"><a class="nav-link" href="#orcamento">Orçamento</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
-        </ul>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="icon fas fa-graduation-cap"></i>BR Concursos
+      </div>
+      <nav class="nav">
+        <a href="#"><i class="icon fas fa-home"></i>Início</a>
+        <a href="#"><i class="icon fas fa-star"></i>Vantagens</a>
+        <a href="#"><i class="icon fas fa-book"></i>Cursos</a>
+        <a href="#"><i class="icon fas fa-users"></i>Quem Somos</a>
+        <a href="#"><i class="icon fas fa-envelope"></i>Fale Conosco</a>
+      </nav>
+      <div class="cta-buttons">
+        <button class="btn-primary" onclick="toggleMenu()">
+          <i class="icon fas fa-user-graduate"></i>Área do Aluno
+        </button>
+        <a href="#" class="btn-secondary">
+          <i class="icon fas fa-sign-in-alt"></i>Entrar ou Cadastrar
+        </a>
+
+        <!-- Menu da Área do Aluno -->
+        <div class="menu-container" id="menu">
+          <h3><i class="icon fas fa-bars"></i>Menu</h3>
+          <ul class="menu-list">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Vantagens</a></li>
+            <li><a href="#">Cursos</a></li>
+            <li><a href="#">Quem Somos</a></li>
+            <li><a href="#">Fale Conosco</a></li>
+          </ul>
+          <h3>Área Restrita</h3>
+          <div class="action-buttons">
+            <button class="btn-aluno">Área do Aluno</button>
+            <button class="btn-entrar">Entrar</button>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Página Inicial -->
-  <div id="home" class="container text-center mt-5">
-    <h1>Bem-vindo à SoftDev</h1>
-    <p>Somos especializados no desenvolvimento de software sob medida, consultoria em TI e suporte técnico.</p>
-    <!-- Vídeo -->
-    <video width="100%" height="auto" controls autoplay loop muted>
-      <source src="c:\Users\MIDIAN\Desktop\bruno\videoplayback.mp4" type="video/mp4"> <!-- Caminho alterado -->
-      <source src="videos/seu-video.webm" type="video/webm">
-      <source src="videos/seu-video.ogg" type="video/ogg">
-      Seu navegador não suporta a tag de vídeo.
-    </video>
-    <a href="#orcamento" class="btn btn-primary">Solicite um Orçamento</a>
-  </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1><i class="icon fas fa-trophy"></i>BR Concursos: Nossas Questões, Sua Aprovação!</h1>
+    <p>Tenha acesso exclusivo para soltar seu grito de liberdade e realizar o sonho do cargo público.</p>
+    <button class="btn">
+      <i class="icon fas fa-check-circle"></i>Assine Já
+    </button>
+  </section>
 
-  <!-- Serviços -->
-  <div id="servicos" class="container mt-5">
-    <h2>Serviços Oferecidos</h2>
-    <p><strong>Nossos Serviços - Soft-Dev</strong></p>
-    <p>Na Soft-Dev, oferecemos soluções inovadoras e de alta qualidade para atender às suas necessidades tecnológicas. Nossa missão é simplificar processos, otimizar resultados e transformar ideias em realidade com o poder da tecnologia. Conheça nossos principais serviços:</p>
-    <ul>
-      <li><strong>Desenvolvimento de Software Sob Medida:</strong> Criamos soluções personalizadas para o seu negócio, desenvolvendo softwares que atendem às suas necessidades específicas...</li>
-      <li><strong>Consultoria e Planejamento de TI:</strong> Oferecemos consultoria especializada para ajudar a sua empresa a escolher as melhores soluções tecnológicas...</li>
-      <li><strong>Desenvolvimento de Aplicativos Móveis:</strong> Desenvolvemos aplicativos móveis nativos e híbridos para Android e iOS...</li>
-      <li><strong>Integração de Sistemas:</strong> Facilitamos a integração de sistemas existentes em sua empresa...</li>
-      <li><strong>Suporte Técnico e Manutenção:</strong> Nosso time está sempre à disposição para garantir o funcionamento contínuo...</li>
-      <li><strong>Desenvolvimento de Sites e E-commerce:</strong> Criamos sites e lojas virtuais modernos e responsivos...</li>
-      <li><strong>Transformação Digital:</strong> Ajudamos empresas a se adaptarem à era digital...</li>
-      <li><strong>Treinamento e Capacitação:</strong> Oferecemos treinamentos especializados para sua equipe...</li>
-    </ul>
-  </div>
-
-  <!-- Orçamento -->
-  <div id="orcamento" class="container mt-5">
-    <h2>Solicite um Orçamento</h2>
-    <form id="orcamento-form">
-      <div class="mb-3">
-        <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nome" name="nome" required>
+  <!-- Cursos -->
+  <section class="courses">
+    <h2>Conheça nossos Simulados</h2>
+    <div class="course-cards">
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500" alt="Curso 1">
+        <div class="course-card-content">
+          <h3>Curso de Simulados ENAM 2ª Edição</h3>
+          <p>R$ 49,90</p>
+          <button class="btn">Informações e Inscrição</button>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">E-mail</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=500" alt="Curso 2">
+        <div class="course-card-content">
+          <h3>Curso ENAM Rodada 02</h3>
+          <p>R$ 49,90</p>
+          <button class="btn">Informações e Inscrição</button>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="telefone" class="form-label">Telefone</label>
-        <input type="text" class="form-control" id="telefone" name="telefone" required>
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=500" alt="Curso 3">
+        <div class="course-card-content">
+          <h3>Curso ENAM Combo</h3>
+          <p>Grátis</p>
+          <button class="btn">Informações e Inscrição</button>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="descricao" class="form-label">Descrição do Projeto</label>
-        <textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="orcamento" class="form-label">Orçamento Estimado (opcional)</label>
-        <input type="text" class="form-control" id="orcamento" name="orcamento">
-      </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
-    <div id="alert" class="alert mt-4" style="display:none;"></div>
-  </div>
+    </div>
+  </section>
 
-  <!-- Contato -->
-  <div id="contato" class="container mt-5">
-    <h2>Entre em Contato</h2>
-    <p><strong>Endereço:</strong> TRAVESSA TUCURUÍ QD50ª Nº 13  BAIRRO PAAR </p>
-    <p><strong>Telefone:</strong> (91) 98191-8866</p>
-    <p><strong>E-mail:</strong> br7376983@gmail.com</p>
+  <!-- News Section -->
+  <section class="news-section">
+    <div class="section-title">
+      <i class="icon fas fa-newspaper"></i>
+      <h2>Últimas Notícias</h2>
+      <p>Fique por dentro das últimas atualizações sobre concursos públicos e oportunidades</p>
+    </div>
+    <div class="news-grid">
+      <article class="news-card">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=500" alt="Notícia Concurso">
+        <div class="card-content">
+          <h3>Novo Concurso Federal Anunciado</h3>
+          <p>Ministério da Educação anuncia concurso com mais de 1.000 vagas para diferentes áreas.</p>
+          <div class="card-meta">
+            <span><i class="icon far fa-calendar"></i>15 Mar 2024</span>
+            <a href="#" class="read-more">Ler mais <i class="icon fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+      <article class="news-card">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500" alt="Dicas de Estudo">
+        <div class="card-content">
+          <h3>Dicas de Estudo para Concursos</h3>
+          <p>Confira as melhores estratégias para otimizar seus estudos e aumentar suas chances de aprovação.</p>
+          <div class="card-meta">
+            <span><i class="icon far fa-calendar"></i>14 Mar 2024</span>
+            <a href="#" class="read-more">Ler mais <i class="icon fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+      <article class="news-card">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=500" alt="Carreira Pública">
+        <div class="card-content">
+          <h3>Carreira Pública em Alta</h3>
+          <p>Pesquisa mostra aumento na procura por carreiras públicas entre jovens profissionais.</p>
+          <div class="card-meta">
+            <span><i class="icon far fa-calendar"></i>13 Mar 2024</span>
+            <a href="#" class="read-more">Ler mais <i class="icon fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 
-    <!-- Mapa usando iframe do Google Maps -->
-    <iframe
-      width="600"
-      height="450"
-      style="border:0"
-      loading="lazy"
-      allowfullscreen
-      referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps/embed/v1/place?key=YOUR_REAL_API_KEY&q=Space+Needle,Seattle+WA"> <!-- Substitua com sua chave -->
-    </iframe>
-  </div>
+  <!-- Technology Section -->
+  <section class="tech-section">
+    <div class="section-title">
+      <i class="icon fas fa-laptop-code"></i>
+      <h2>Tecnologia e Inovação</h2>
+      <p>Recursos tecnológicos para potencializar seus estudos</p>
+    </div>
+    <div class="tech-grid">
+      <article class="tech-card">
+        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=500" alt="Plataforma Digital">
+        <div class="card-content">
+          <h3>Plataforma Digital</h3>
+          <p>Nossa plataforma utiliza inteligência artificial para personalizar seu plano de estudos.</p>
+          <div class="card-meta">
+            <span><i class="icon fas fa-microchip"></i>Tecnologia</span>
+            <a href="#" class="read-more">Saiba mais <i class="icon fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+      <article class="tech-card">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=500" alt="App Mobile">
+        <div class="card-content">
+          <h3>App Mobile</h3>
+          <p>Estude em qualquer lugar com nosso aplicativo móvel disponível para iOS e Android.</p>
+          <div class="card-meta">
+            <span><i class="icon fas fa-mobile-alt"></i>Mobile</span>
+            <a href="#" class="read-more">Saiba mais <i class="icon fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+      <article class="tech-card">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500" alt="Análise de Desempenho">
+        <div class="card-content">
+          <h3>Análise de Desempenho</h3>
+          <p>Acompanhe seu progresso com gráficos detalhados e relatórios personalizados.</p>
+          <div class="card-meta">
+            <span><i class="icon fas fa-chart-line"></i>Analytics</span>
+            <a href="#" class="read-more">Saiba mais <i class="icon fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 
-  <!-- Rodapé -->
-  <footer class="text-center mt-5 p-4">
-    <p>&copy; 2025 SoftDev - Todos os direitos reservados</p>
-    <p>
-      <a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#termosModal">Termos de Uso</a> | 
-      <a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#privacidadeModal">Política de Privacidade</a>
-    </p>
-    <p>Redes sociais: <a href="#" class="text-white">Facebook</a> | <a href="#" class="text-white">Twitter</a> | <a href="#" class="text-white">LinkedIn</a></p>
+  <footer>
+    <i class="icon fas fa-copyright"></i>2025 softdev web. Todos os direitos reservados.
   </footer>
 
-  <!-- Modal Termos de Uso -->
-  <div class="modal fade" id="termosModal" tabindex="-1" aria-labelledby="termosModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="termosModalLabel">Termos de Uso</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-        </div>
-        <div class="modal-body">
-          <h5>1. Introdução</h5>
-          <p>Ao utilizar o software [Nome do Software], você concorda com os termos descritos abaixo...</p>
-          <h5>2. Licença de Uso</h5>
-          <p>O software SOFT-DEV é fornecido com uma licença limitada...</p>
-          <h5>3. Propriedade Intelectual</h5>
-          <p>Todos os direitos sobre o software, incluindo códigos-fonte...</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Política de Privacidade -->
-  <div class="modal fade" id="privacidadeModal" tabindex="-1" aria-labelledby="privacidadeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="privacidadeModalLabel">Política de Privacidade</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-        </div>
-        <div class="modal-body">
-          <h5>1. Introdução</h5>
-          <p>A privacidade dos dados dos usuários é fundamental...</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
   <script>
-    // Função para enviar os dados para o WhatsApp
-    document.getElementById('orcamento-form').addEventListener('submit', function(event) {
-      event.preventDefault();
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
 
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
-      const telefone = document.getElementById('telefone').value;
-      const descricao = document.getElementById('descricao').value;
-
-      // Cria o link para o WhatsApp com os dados
-      const numeroWhatsApp = '5591981918866'; // Número do WhatsApp
-      const mensagem = `Olá, gostaria de solicitar um orçamento!\nNome: ${nome}\nE-mail: ${email}\nTelefone: ${telefone}\nDescrição do Projeto: ${descricao}`;
-      const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-
-      // Redireciona para o WhatsApp
-      window.open(urlWhatsApp, '_blank');
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('menu');
+      const button = document.querySelector('.btn-primary');
+      if (!menu.contains(event.target) && event.target !== button) {
+        menu.style.display = 'none';
+      }
     });
   </script>
 </body>
-
 </html>
