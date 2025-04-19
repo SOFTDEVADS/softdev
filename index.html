@@ -1,106 +1,133 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inscrição Simpósio 2025 EBD | Pagamento via Pix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento Simpósio 2025 EBD</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f3f4f6;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
       margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      max-width: 420px;
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 380px;
       width: 90%;
       text-align: center;
     }
 
-    h2 {
-      color: #1f2937;
-      font-size: 20px;
+    .top-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .pix-logo {
+      margin: 15px 0;
+    }
+
+    .pix-code {
+      word-break: break-all;
+      font-size: 14px;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 5px;
       margin-bottom: 10px;
     }
 
-    p {
-      color: #4b5563;
-      font-size: 16px;
-    }
-
-    button {
-      background: #10b981;
-      color: white;
-      border: none;
+    .copy-btn {
+      background-color: #000;
+      color: #fff;
       padding: 12px 20px;
+      border: none;
       font-size: 16px;
-      border-radius: 8px;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 15px;
+      margin-bottom: 15px;
     }
 
-    button:hover {
-      background: #059669;
+    .copy-btn:hover {
+      background-color: #333;
     }
 
-    .copied {
-      color: #10b981;
-      margin-top: 10px;
-      font-weight: 500;
+    .instructions {
+      font-size: 14px;
+      color: #555;
+      text-align: left;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
     }
 
     .qr-code {
-      margin-top: 20px;
+      margin: 20px 0;
       display: none;
     }
 
-    .qr-code img {
-      width: 200px;
-      height: 200px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+    .copied {
+      color: green;
+      margin-top: 10px;
+      font-size: 14px;
     }
 
     .whatsapp-button {
-      margin-top: 20px;
-      display: none;
-    }
-
-    .whatsapp-button a {
-      text-decoration: none;
+      margin-top: 15px;
     }
 
     .whatsapp-button button {
       background-color: #25D366;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Inscrição Simpósio 2025 EBD</h2>
-    <p>Pagamento via Pix</p>
-    <p>Clique no botão abaixo para copiar o CPF Pix e realizar o pagamento.</p>
-
-    <div id="qrCode" class="qr-code">
-      <img id="qrImage" src="" alt="QR Code Pix" />
+  <div class="container">
+    <div class="top-info">
+      <div><strong>Valor:</strong> R$ 30,00</div>
+      <div><strong>Vencimento:</strong> 24/04</div>
     </div>
 
-    <button onclick="mostrarQrECopiar()">Pagar com Pix</button>
-    <div id="copiedText" class="copied" style="display: none;">CPF Pix copiado com sucesso!</div>
+    <div class="pix-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Logo_pix.png" alt="Pix Logo" width="80">
+    </div>
 
-    <!-- Botão WhatsApp -->
-    <div id="whatsappButton" class="whatsapp-button">
+    <p>Copie o código Pix abaixo e cole no app de pagamento:</p>
+    <div class="pix-code" id="pixCode">
+      73617610200
+    </div>
+    <button class="copy-btn" onclick="copiarPix()">COPIAR CÓDIGO PIX</button>
+    <div id="copiado" class="copied" style="display: none;">Código Pix copiado com sucesso!</div>
+
+    <div class="qr-code" id="qrCode">
+      <img id="qrImage" src="" alt="QR Code Pix" width="180" height="180">
+    </div>
+
+    <div class="instructions">
+      <p><strong>Como pagar?</strong></p>
+      <ul>
+        <li>Cole o código Pix no seu app bancário ou carteira digital.</li>
+        <li>Realize o pagamento normalmente.</li>
+        <li>O pagamento será confirmado em instantes.</li>
+      </ul>
+    </div>
+
+    <div class="whatsapp-button" id="whatsappBtn" style="display: none;">
       <a id="whatsappLink" target="_blank">
         <button>Enviar Comprovante via WhatsApp</button>
       </a>
@@ -108,36 +135,29 @@
   </div>
 
   <script>
-    function mostrarQrECopiar() {
-      const pixCpf = "73617610200";
-      const qrImage = document.getElementById("qrImage");
-      const qrContainer = document.getElementById("qrCode");
-      const copiedText = document.getElementById("copiedText");
-      const whatsappLink = document.getElementById("whatsappLink");
-      const whatsappButton = document.getElementById("whatsappButton");
-
-      // Copiar CPF Pix
-      const tempInput = document.createElement("textarea");
-      tempInput.value = pixCpf;
-      document.body.appendChild(tempInput);
-      tempInput.select();
+    function copiarPix() {
+      const pix = "73617610200";
+      const textarea = document.createElement("textarea");
+      textarea.value = pix;
+      document.body.appendChild(textarea);
+      textarea.select();
       document.execCommand("copy");
-      document.body.removeChild(tempInput);
+      document.body.removeChild(textarea);
 
-      // Exibir elementos
-      copiedText.style.display = "block";
-      qrContainer.style.display = "block";
-      whatsappButton.style.display = "block";
+      // Mostrar aviso
+      document.getElementById("copiado").style.display = "block";
 
-      // Gerar QR Code com CPF como chave Pix
-      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(pixCpf)}&size=200x200`;
-      qrImage.src = qrUrl;
+      // Gerar QR Code
+      const qr = document.getElementById("qrCode");
+      const img = document.getElementById("qrImage");
+      img.src = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(pix)}&size=200x200`;
+      qr.style.display = "block";
 
-      // Mensagem profissional para o WhatsApp
-      const mensagem = encodeURIComponent("Olá! Aqui está o comprovante de pagamento via Pix do Simpósio 2025 EBD.");
-      const numero = "559192346353";
-      whatsappLink.href = `https://wa.me/${numero}?text=${mensagem}`;
+      // Atualizar link WhatsApp
+      const whatsappLink = document.getElementById("whatsappLink");
+      whatsappLink.href = `https://wa.me/559192346353?text=${encodeURIComponent("Olá! Aqui está o comprovante de pagamento do Simpósio 2025 EBD.")}`;
+      document.getElementById("whatsappBtn").style.display = "block";
     }
   </script>
 </body>
-</html>
+  </html>
