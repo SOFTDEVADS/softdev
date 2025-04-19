@@ -4,11 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>INSCRIÇÃO SÍMPOSIO 2025 EBD <BR></BR>
-    Pagamento via Pix</title>
+  <title>Inscrição Simpósio 2025 EBD | Pagamento via Pix</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f3f4f6;
       display: flex;
       flex-direction: column;
@@ -23,12 +22,20 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      max-width: 420px;
+      width: 90%;
       text-align: center;
     }
 
     h2 {
-      color: #333;
+      color: #1f2937;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #4b5563;
+      font-size: 16px;
     }
 
     button {
@@ -40,6 +47,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s;
+      margin-top: 15px;
     }
 
     button:hover {
@@ -49,6 +57,7 @@
     .copied {
       color: #10b981;
       margin-top: 10px;
+      font-weight: 500;
     }
 
     .qr-code {
@@ -59,11 +68,16 @@
     .qr-code img {
       width: 200px;
       height: 200px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
     }
 
     .whatsapp-button {
-      margin-top: 15px;
+      margin-top: 20px;
       display: none;
+    }
+
+    .whatsapp-button a {
       text-decoration: none;
     }
 
@@ -74,49 +88,56 @@
 </head>
 <body>
   <div class="card">
-    <h2>INSCRIÇÃO SÍMPOSIO 2025 EBD <BR>
-      Pagamento via Pix</h2>
-    <p>Clique no botão abaixo para copiar e pagar com Pix.</p>
+    <h2>Inscrição Simpósio 2025 EBD</h2>
+    <p>Pagamento via Pix</p>
+    <p>Clique no botão abaixo para copiar o CPF Pix e realizar o pagamento.</p>
 
     <div id="qrCode" class="qr-code">
       <img id="qrImage" src="" alt="QR Code Pix" />
     </div>
 
     <button onclick="mostrarQrECopiar()">Pagar com Pix</button>
-    <div id="copiedText" class="copied" style="display: none;">Código Pix copiado com sucesso!</div>
+    <div id="copiedText" class="copied" style="display: none;">CPF Pix copiado com sucesso!</div>
 
     <!-- Botão WhatsApp -->
-    <a href="https://wa.me/559192346353?text=Olá,%20enviei%20o%20comprovante%20do%20Pix%20para%20Midian%20Caldas%20Rodrigues." 
-       target="_blank" id="whatsappLink" class="whatsapp-button">
-      <button>Enviar Comprovante via WhatsApp</button>
-    </a>
+    <div id="whatsappButton" class="whatsapp-button">
+      <a id="whatsappLink" target="_blank">
+        <button>Enviar Comprovante via WhatsApp</button>
+      </a>
+    </div>
   </div>
 
   <script>
     function mostrarQrECopiar() {
-      const pixCode = "00020126580014BR.GOV.BCB.PIX0111736176102005204000053039865802BR5921Midian Caldas Rodrigues6009SAO PAULO6304ABCD";
+      const pixCpf = "73617610200";
       const qrImage = document.getElementById("qrImage");
       const qrContainer = document.getElementById("qrCode");
       const copiedText = document.getElementById("copiedText");
       const whatsappLink = document.getElementById("whatsappLink");
+      const whatsappButton = document.getElementById("whatsappButton");
 
-      // Copiar Pix
+      // Copiar CPF Pix
       const tempInput = document.createElement("textarea");
-      tempInput.value = pixCode;
+      tempInput.value = pixCpf;
       document.body.appendChild(tempInput);
       tempInput.select();
       document.execCommand("copy");
       document.body.removeChild(tempInput);
 
-      // Exibir QR, mensagem e botão WhatsApp
+      // Exibir elementos
       copiedText.style.display = "block";
       qrContainer.style.display = "block";
-      whatsappLink.style.display = "inline-block";
+      whatsappButton.style.display = "block";
 
-      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(pixCode)}&size=200x200`;
+      // Gerar QR Code com CPF como chave Pix
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(pixCpf)}&size=200x200`;
       qrImage.src = qrUrl;
+
+      // Mensagem profissional para o WhatsApp
+      const mensagem = encodeURIComponent("Olá! Aqui está o comprovante de pagamento via Pix do Simpósio 2025 EBD.");
+      const numero = "559192346353";
+      whatsappLink.href = `https://wa.me/${numero}?text=${mensagem}`;
     }
   </script>
 </body>
 </html>
-
