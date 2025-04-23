@@ -1,302 +1,132 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Pagamento via Pix</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-      color: #1a1f36;
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-      line-height: 1.5;
+      padding: 40px;
     }
 
-    .pix-container {
-      background: #ffffff;
-      padding: 2.5rem;
-      border-radius: 24px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 480px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      max-width: 400px;
     }
 
-    .pix-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #00AA9E, #2DD4BF);
+    .pix-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .pix-logo img {
+      height: 80px;
     }
 
     h2 {
-      font-size: 1.75rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      background: linear-gradient(90deg, #00AA9E, #2DD4BF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      text-align: center;
+      color: #00bfa5;
+      margin-top: 0;
     }
 
-    .cpf-display {
-      background: #f8fafc;
-      padding: 0.75rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      color: #475569;
-      margin-bottom: 1.5rem;
-      border: 1px solid #e2e8f0;
+    .pix-info {
+      margin-top: 20px;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
     }
 
-    p.sub {
-      color: #64748b;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .qr-container {
-      background: #f8fafc;
-      padding: 2rem;
-      border-radius: 16px;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .qr-container::after {
-      content: 'CPF: 736.156.102-00';
-      position: absolute;
-      bottom: 0.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.75rem;
-      color: #64748b;
-    }
-
-    img.qr-code {
-      width: 220px;
-      height: 220px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      margin-bottom: 1rem;
-    }
-
-    .pix-code {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 1rem;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      font-family: monospace;
-      word-break: break-all;
-      margin-bottom: 1.5rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      position: relative;
-    }
-
-    .pix-code:hover {
-      background: #f1f5f9;
-      border-color: #cbd5e1;
-    }
-
-    .pix-code::after {
-      content: '🔗 Clique para copiar';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
+    .copy-btn {
+      margin-top: 10px;
+      background: #00bfa5;
       color: white;
+      border: none;
       padding: 8px 12px;
       border-radius: 6px;
-      font-size: 0.75rem;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-    }
-
-    .pix-code:hover::after {
-      opacity: 1;
-    }
-
-    .feedback {
-      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-      color: #166534;
-      padding: 1rem;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      margin-bottom: 1.5rem;
-      display: none;
-      animation: slideIn 0.3s ease-out;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(-10px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    button {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .send-btn {
+      width: 100%;
+      background: #25d366;
+      color: white;
+      padding: 10px;
+      margin-top: 20px;
       border: none;
-      margin-bottom: 1rem;
-    }
-
-    .copy-button {
-      background: linear-gradient(90deg, #00AA9E, #2DD4BF);
-      color: white;
-    }
-
-    .copy-button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(45, 212, 191, 0.2);
-    }
-
-    .whatsapp-button {
-      background: linear-gradient(90deg, #25D366, #128C7E);
-      color: white;
-    }
-
-    .whatsapp-button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
-    }
-
-    .guide {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: left;
-      list-style-position: inside;
-    }
-
-    .guide li {
-      color: #475569;
-      font-size: 0.875rem;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .guide li::before {
-      content: '→';
-      margin-right: 0.5rem;
-      color: #00AA9E;
-      font-weight: bold;
-    }
-
-    .guide li:last-child {
-      margin-bottom: 0;
-    }
-
-    @media (max-width: 480px) {
-      .pix-container {
-        padding: 1.5rem;
-      }
-
-      .qr-container {
-        padding: 1rem;
-      }
-
-      img.qr-code {
-        width: 180px;
-        height: 180px;
-      }
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="pix-container">
-    <h2>Pague com Pix</h2>
-    <p class="sub">Escaneie o QR Code ou use o código abaixo</p>
-    
-    <div class="qr-container">
-      <img 
-        class="qr-code"
-        src="https://qrcodepix.com.br/api/qr?chave=736.156.102-00&nome=Midian+Caldas+Rodrigues&cidade=Belem" 
-        alt="QR Code Pix"
-      >
+  <div class="container">
+    <div class="pix-logo">
+      <img src="data:image/jpeg;base64,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" alt="Logo Pix">
     </div>
-    
-    <div class="pix-code" id="pixCode" onclick="copiarPix()">
-      00020126360014br.gov.bcb.pix0111736.156.102-005204000053039865802BR5921Midian Caldas Rodrigues6005Belem62070503***6304D309
-    </div>
+    <h2>Pagamento via Pix</h2>
+<p style="text-align: center; font-size: 14px; color: #555;">
+  Abra o app do seu banco, copie a chave Pix abaixo e realize o pagamento.
+</p>
 
-    <div class="feedback" id="feedbackMsg">
-      ✅ Código Pix copiado com sucesso!
+    <div class="pix-info">
+      <strong>Chave Pix (CPF):</strong> <span id="pixKey">736.176.102-00</span><br>
+      <strong>Recebedor:</strong> Midian Caldas Rodrigues
+      <button class="copy-btn" onclick="copyPix()">Copiar Pix</button>
     </div>
 
-    <button class="copy-button" onclick="copiarPix()">
-      Copiar código Pix
-    </button>
-
-    <button class="whatsapp-button" onclick="enviarComprovante()">
-      Enviar comprovante via WhatsApp
-    </button>
-
-    <ul class="guide">
-      <li>Abra o app do seu banco</li>
-      <li>Toque em "Pix"</li>
-      <li>Escolha "Pix Copia e Cola"</li>
-      <li>Cole o código copiado</li>
-      <li>Confirme o pagamento</li>
-    </ul>
+    <h3>Enviar comprovante</h3>
+    <input type="text" id="nome" placeholder="Seu nome" required>
+    <input type="text" id="campo" placeholder="Campo (ex: ad-Maguari)">
+    <input type="text" id="grupo" placeholder="Grupo">
+    <input type="text" id="telefone" placeholder="Telefone">
+    <input type="text" id="congregacao" placeholder="Congregação">
+    <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
   </div>
 
   <script>
-    const CPF = "736.156.102-00";
-    
-    function copiarPix() {
-      const pixCode = document.getElementById("pixCode").innerText;
-      navigator.clipboard.writeText(pixCode).then(() => {
-        const feedback = document.getElementById("feedbackMsg");
-        feedback.style.display = "block";
-        
-        const button = document.querySelector('.copy-button');
-        button.style.transform = 'scale(0.98)';
-        
-        setTimeout(() => {
-          feedback.style.display = "none";
-          button.style.transform = '';
-        }, 3000);
-      });
+    function copyPix() {
+      const pixKey = document.getElementById("pixKey").innerText;
+      navigator.clipboard.writeText(pixKey);
+      alert("Chave Pix copiada!");
     }
 
-    function enviarComprovante() {
+    function enviarWhatsApp() {
+      const nome = document.getElementById("nome").value;
+      const campo = document.getElementById("campo").value;
+      const grupo = document.getElementById("grupo").value;
+      const telefone = document.getElementById("telefone").value;
+      const congregacao = document.getElementById("congregacao").value;
+
+      const mensagem = `*Comprovante de Pagamento via Pix*%0A
+Nome: ${nome}%0A
+Campo: ${campo}%0A
+Grupo: ${grupo}%0A
+Telefone: ${telefone}%0A
+Congregação: ${congregacao}%0A
+`;
+
       const numero = "5591992346353";
-      const mensagem = encodeURIComponent(`Olá, acabei de realizar o pagamento via Pix para o CPF ${CPF}. Segue o comprovante:`);
-      window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
+      const url = `https://wa.me/${numero}?text=${mensagem}`;
+      window.open(url, "_blank");
     }
   </script>
 </body>
