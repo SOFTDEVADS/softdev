@@ -99,8 +99,12 @@
     <input type="text" id="grupo" placeholder="Grupo">
     <input type="text" id="telefone" placeholder="Telefone">
     <input type="text" id="congregacao" placeholder="Congregação">
+    <input type="file" id="comprovante" accept="image/*">
+    <p style="font-size: 13px; color: #777;">
+      Obs: a imagem do comprovante não será enviada automaticamente. Você deve anexar manualmente ao abrir o WhatsApp.
+    </p>
     <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
-  </div>
+    
 
   <script>
     function copyPix() {
